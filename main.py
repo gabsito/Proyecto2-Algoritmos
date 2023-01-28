@@ -5,4 +5,4 @@ import utils
 
 __FILE__ = "graficas.csv"
 
-utils.readCSV(__FILE__);
+graphs = utils.readCSV(__FILE__)
