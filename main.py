@@ -12,10 +12,15 @@ __FILE__ = "graficas.csv"
 matrix = utils.readCSV(__FILE__)
 
 #muestra de como obtener la linea media de cada grafica:
-a = np.min(matrix[3], axis=0)[1]
-b = np.max(matrix[3], axis=0)[1]
-media = st.mean([a, b])
-
+#a = np.min(matrix[3], axis=0)[1]
+#b = np.max(matrix[3], axis=0)[1]
+#media = st.mean([a, b])
+medias = []
+for graph in matrix:
+    a = np.min(graph, axis=0)[1]
+    b = np.max(graph, axis=0)[1]
+    media = st.mean([a, b])
+    medias.append(media)
 
 #matrix = [[1, 2, 3], [4, 5, 6, 7], [8, 9]]
 n = len(matrix)
@@ -46,8 +51,10 @@ for row1 in range(n):
                     tramo2 = "constante"
                 if tramo1 == tramo2:
                   # print("Tramo desde ", col , " a ", col+1, "iguales en :", row1, " y ", row2)
-                   similares = True
-                   similitudes.append(col)
+                    if matrix[row1][col][1] >= medias[row1] and matrix[row2][col][1] >= medias[row2] or matrix[row1][col][1] < medias[row1] and matrix[row2][col][1] < medias[row2]:
+                        if matrix[row1][col+1][1] >= medias[row1] and matrix[row2][col+1][1] >= medias[row2] or matrix[row1][col+1][1] < medias[row1] and matrix[row2][col+1][1] < medias[row2]:
+                            similares = True
+                            similitudes.append(col)
                 if tramo1 != tramo2:
                     iguales = False
         if iguales:
