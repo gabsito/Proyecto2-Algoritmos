@@ -1,4 +1,7 @@
 #imports
+import numpy as np
+import statistics as st
+
 import utils
 import numpy as np
 
@@ -7,6 +10,13 @@ import numpy as np
 __FILE__ = "graficas.csv"
 
 matrix = utils.readCSV(__FILE__)
+
+#muestra de como obtener la linea media de cada grafica:
+a = np.min(matrix[3], axis=0)[1]
+b = np.max(matrix[3], axis=0)[1]
+media = st.mean([a, b])
+
+
 #matrix = [[1, 2, 3], [4, 5, 6, 7], [8, 9]]
 n = len(matrix)
 m = max(len(row) for row in matrix)
